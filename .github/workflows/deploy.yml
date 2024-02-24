@@ -14,7 +14,7 @@ jobs:
       - name: Create my const
         run: |
           touch src/const.js
-          echo "export const api = "'${{secrets.MY_API_KEY}}'"
+          echo "export const api = '${{secrets.MY_API_KEY}}';"
           cat src/const.js
 
       - name: Install and build 🔧
