@@ -4,11 +4,12 @@ import axios from 'axios';
 import { api } from '../const.js';
 
 export async function searchImages(userValue, currentPage) {
+  const API_KEY = api;
   const BASE_URL = 'https://pixabay.com';
   const END_POINT = '/api/';
   const url = `${BASE_URL}${END_POINT}`;
   const params = {
-    key: api,
+    key: API_KEY,
     q: userValue,
     image_type: 'photo',
     orientation: 'horizontal',
@@ -20,7 +21,6 @@ export async function searchImages(userValue, currentPage) {
     const result = await axios.get(url, { params });
     if (result.data.hits.length === 0) {
       showErrorToast();
-      return;
     }
     return result.data;
   } catch (error) {
