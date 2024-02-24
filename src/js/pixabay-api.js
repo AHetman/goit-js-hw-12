@@ -1,6 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
+import { api } from '../const.js';
 // import 'dotenv/config';
 
 export async function searchImages(userValue, currentPage) {
