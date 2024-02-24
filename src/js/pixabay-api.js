@@ -1,14 +1,14 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
-import { api as API_KEY } from '../const.js';
+import { api } from '../const.js';
 
 export async function searchImages(userValue, currentPage) {
   const BASE_URL = 'https://pixabay.com';
   const END_POINT = '/api/';
   const url = `${BASE_URL}${END_POINT}`;
   const params = {
-    key: API_KEY,
+    key: api,
     q: userValue,
     image_type: 'photo',
     orientation: 'horizontal',
