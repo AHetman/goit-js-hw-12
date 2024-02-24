@@ -32,26 +32,7 @@ async function onBtnSearch(e) {
     renderGallery(images);
     loader.classList.remove('is-open');
     visibilitySelection();
-
     e.target.reset();
-    // .then(images => {
-    //   renderGallery(images);
-    // })
-    // .catch(error => {
-    //   iziToast.show({
-    //     position: 'topRight',
-    //     messageColor: 'white',
-    //     progressBar: false,
-    //     backgroundColor: 'red',
-    //     closeOnClick: true,
-    //     close: false,
-    //     message: `❌ Error fetching images: ${error}`,
-    //   });
-    // })
-    // .finally(() => {
-    //   loader.classList.remove('is-open');
-    //   e.target.reset();
-    // });
   }
 }
 

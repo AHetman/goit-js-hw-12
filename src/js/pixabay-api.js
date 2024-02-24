@@ -1,12 +1,9 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
-import { api } from '../const.js';
-// import 'dotenv/config';
+import { api as API_KEY } from '../const.js';
 
 export async function searchImages(userValue, currentPage) {
-  const API_KEY = '42361876-39dc0f6de1023fb2a8c585c35';
-  // const API_KEY = process.env.API_KEY;
   const BASE_URL = 'https://pixabay.com';
   const END_POINT = '/api/';
   const url = `${BASE_URL}${END_POINT}`;
@@ -22,19 +19,24 @@ export async function searchImages(userValue, currentPage) {
   try {
     const result = await axios.get(url, { params });
     if (result.data.hits.length === 0) {
-      iziToast.show({
-        position: 'topRight',
-        messageColor: 'white',
-        progressBar: false,
-        backgroundColor: 'red',
-        closeOnClick: true,
-        close: false,
-        message:
-          '😭 Sorry, there are no images matching youre search query. Please, try again!',
-      });
+      showErrorToast();
+      return;
     }
     return result.data;
   } catch (error) {
     throw error;
   }
+}
+
+function showErrorToast() {
+  iziToast.show({
+    position: 'topRight',
+    messageColor: 'white',
+    progressBar: false,
+    backgroundColor: 'red',
+    closeOnClick: true,
+    close: false,
+    message:
+      '😭 Sorry, there are no images matching your search query. Please, try again!',
+  });
 }
