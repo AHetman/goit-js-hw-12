@@ -34,7 +34,6 @@ export async function searchImages(userValue, currentPage) {
     }
     return result.data;
   } catch (error) {
-    // console.error('Ошибка при выполнении запроса:', error);
     throw error;
   }
 }

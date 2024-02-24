@@ -23,16 +23,9 @@ async function onBtnSearch(e) {
   gallery.innerHTML = '';
   if (userSymbol === '') {
     loader.classList.remove('is-open');
+    hideBtnLoad();
     gallery.innerHTML = '';
-    iziToast.show({
-      position: 'topRight',
-      messageColor: 'white',
-      progressBar: false,
-      backgroundColor: 'red',
-      closeOnClick: true,
-      close: false,
-      message: '❌ Please enter a search tag',
-    });
+    showError('❌ Please enter a search tag');
   } else {
     const images = await searchImages(userSymbol, page);
     maxPage = Math.ceil(images.totalHits / 15);
@@ -68,15 +61,7 @@ async function onLoadMore() {
   if (userSymbol === '') {
     loader.classList.remove('is-open');
     gallery.innerHTML = '';
-    iziToast.show({
-      position: 'topRight',
-      messageColor: 'white',
-      progressBar: false,
-      backgroundColor: 'red',
-      closeOnClick: true,
-      close: false,
-      message: '❌ Please enter a search tag',
-    });
+    showError('❌ Please enter a search tag');
   } else {
     const images = await searchImages(userSymbol, page);
     renderGallery(images);
@@ -102,16 +87,32 @@ function showBtnLoad() {
 function visibilitySelection() {
   if (page >= maxPage) {
     hideBtnLoad();
-    iziToast.show({
-      position: 'topRight',
-      messageColor: 'white',
-      progressBar: false,
-      backgroundColor: 'blue',
-      closeOnClick: true,
-      close: false,
-      message: `We're sorry, but you've reached the end of search results`,
-    });
+    showMessage(`We're sorry, but you've reached the end of search results`);
   } else {
     showBtnLoad();
   }
+}
+
+function showError(msg) {
+  iziToast.show({
+    title: '',
+    message: `${msg}`,
+    position: 'topRight',
+    messageColor: 'white',
+    closeOnClick: true,
+    close: false,
+    backgroundColor: 'red',
+  });
+}
+
+function showMessage(msg) {
+  iziToast.show({
+    title: '',
+    message: `${msg}`,
+    position: 'topRight',
+    messageColor: 'white',
+    closeOnClick: true,
+    close: false,
+    backgroundColor: 'green',
+  });
 }
